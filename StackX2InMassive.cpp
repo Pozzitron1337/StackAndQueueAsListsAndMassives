@@ -9,10 +9,10 @@ private:
 public:
     StackX2InMassive(int s=10)// по умолчанию размер стека равен 10 элементам
     {
-        size = s > 0 ? s: 10;   // инициализировать размер стека
-        stack = new T[size]; // выделить память под стек
-        topleft = -1; // значение -1 говорит о том, что стек пуст
-        topright=size;
+        size = s > 0 ? s: 10;
+        stack = new T[size];
+        topleft = -1;  //leftstack is empty
+        topright=size; //righth stack is empty
     }
     ~StackX2InMassive() // деструктор
     {

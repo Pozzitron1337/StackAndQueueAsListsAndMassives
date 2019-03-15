@@ -32,6 +32,9 @@ public:
     PostfixExpression(){
         postfixEpression="";
     }
+    ~PostfixExpression(){
+
+    }
     PostfixExpression(string pe) {
         postfixEpression=pe;
     }

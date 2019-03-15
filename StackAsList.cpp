@@ -10,65 +10,68 @@ private:
 public:
     StackAsList(){
         stack = (list<T>*)malloc(sizeof(list<T>));
-        top=stack;
         stack->next=NULL;
         stack->prev=NULL;
-        stack->element='\0';
-    }
-    StackAsList(T element){
-        stack = (list<T>*)malloc(sizeof(list<T>));
-        top=stack;
-        stack->next=NULL;
-        stack->prev=NULL;
-        stack->element=element;
+        top=NULL;
     }
     ~StackAsList(){
-        delete stack;
+        list<T>* temp;
+        while(stack){
+            temp=stack->next;
+            delete stack;
+            stack=temp;
+        }
+        delete top;
     }
     bool push(const T element){
-        if(top->element=='\0') {
+        if(top==NULL) {
+            top=stack;
             top->element=element;
             return true;
+        }else {
+            list<T> *temp = (list<T>*)malloc(sizeof(list<T>));
+            temp->prev = top;
+            temp->next = NULL;
+            top->next = temp;
+            top = temp;
+            top->element = element;
+            return true;
         }
-        list<T>* temp=(list<T>*)malloc(sizeof(list<T>));
-        temp->prev=top;
-        temp->next=NULL;
-        top->next=temp;
-        top=temp;
-        temp->element=element;
-        return true;
     }
     T getTopElement(){
-        return top->element;
+        if(top==NULL)
+            return (T)'\0';
+        else
+            return top->element;
     }
 
     bool pop(){
-        if(top!=stack){
-            top=top->prev;
-            free(top->next);
-            top->next=NULL;
+        if(top==NULL){
+            return false;
+        }
+        if(top==stack){
+            top=NULL;
             return true;
         }
         else{
-            top->element='\0';
-            return false;
+            list<T>* temp=top;
+            top=top->prev;
+            top->next=NULL;
+            delete temp;
+            return true;
         }
     }
     bool isEmpty(){
-        if(stack->element=='\0')
-            return true;
-        else return false;
+        return (top==NULL)?true:false;
     };
     bool clear(){
-        while(top!=stack)
+        while(top!=NULL)
             pop();
-        pop();
         return true;
     }
     void printStack(){
         list<T>* iterator=top;
-        if(iterator->element=='\0')
-        {
+        if(iterator==NULL) {
             std::cout<<"Stack is empty."<<std::endl;
             return;
         }

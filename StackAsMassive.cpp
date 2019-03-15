@@ -2,41 +2,39 @@
 template<typename T>
 class StackAsMassive {
 private:
-    T *stack; // указатель на стек
-    int size; // размер стека
-    int top; // вершина стека
+    T *stack;           // massive
+    unsigned int size;  // stack size
+    int top;            // stack top
 public:
-    StackAsMassive(int s=10)// по умолчанию размер стека равен 10 элементам
+    StackAsMassive(int s=10)// by default
     {
-        size = s > 0 ? s: 10;   // инициализировать размер стека
-        stack = new T[size]; // выделить память под стек
-        top = -1; // значение -1 говорит о том, что стек пуст
+        size = s > 0 ? s: 10;
+        stack = new T[size];
+        top = -1;// stack is empty
     }
-    ~StackAsMassive() // деструктор
+    ~StackAsMassive()
     {
-        delete[] stack;//
+        delete[] stack;
     }
-    bool push(const T element) // поместить элемент в стек
+    bool push(const T element) //adding element to stack
     {
         if (top == size - 1) {
             std::cout<<"Stack is overflow."<<std::endl;
-            return false; // стек полон
+            return false; //Stack is overflow
         }else{
-        top++;                //увеличиваем индекс вершины
-        stack[top] = element; // помещаем элемент в стек
-        return true;          //элемент добавлен
+        top++;
+        stack[top] = element;
+        return true;//success
         }
     }
-    bool pop() // удалить из стека элемент
+    bool pop() //delete element from stack
     {
         if (top == - 1)
-            return false; // стек пуст
-
-        stack[top] = 0; // удаляем элемент из стека
-        top--;          // уменьшаем индекс вершины
-        return true;    // элемент удалён
+            return false; //stack is empty
+        top--;
+        return true;    //success
     }
-    void printStack(){//вывести стек в консоль
+    void printStack(){//output to console
         if(top==-1) {
             std::cout<<"Stack is empty."<<std::endl;
             return;

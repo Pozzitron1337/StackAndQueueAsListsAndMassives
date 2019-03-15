@@ -7,60 +7,63 @@ private:
     list<T>* tail;
 public:
     QueueAsList(){
-        head = (list<T>*)malloc(sizeof(list<T>));
-        tail=head;
-        head->next=NULL;
-        head->prev=NULL;
-        head->element='\0';
+        head=NULL;
+        tail=NULL;
     }
-    QueueAsList(T element){
-        head = (list<T>*)malloc(sizeof(list<T>));
-        head=head;
-        tail=head;
-        head->next=NULL;
-        head->prev=NULL;
-        head->element=element;
-    }
+
     ~QueueAsList(){
-        delete head;
+        list<T>* temp;
+        while(head){
+            temp=head->next;
+            delete head;
+            head=temp;
+        }
     }
     bool add(const T element){
-        if(tail->element=='\0') {
+        if(tail==NULL){
+            head=(list<T>*)malloc(sizeof(list<T>));
+            tail=head;
+            tail->prev=NULL;
+            tail->next=NULL;
             tail->element=element;
             return true;
-        } else {
-            list<T> *temp = (list<T> *) malloc(sizeof(list<T>));
-            temp->prev = tail;
-            tail->next = temp;
-            temp->next = NULL;
-            temp->element = element;
-            tail = temp;
+        }else{
+            list<T> *temp = (list<T>*)malloc(sizeof(list<T>));
+            temp->prev=tail;
+            temp->next=NULL;
+            temp->element=element;
+            tail->next=temp;
+            tail=temp;
             return true;
         }
     }
 
     bool pop(){
-        if(head->next!=NULL){
-            head=head->next;
-            free(head->prev);
+        if(head==NULL)
+            return false;
+        if(head==tail){
+            delete head;
+            head=NULL;
+            tail=NULL;
             return true;
-        }else{
-            head->element='\0';
-            return true;
-        }
-    }
-    void printQueue(){
-        if(head->element=='\0') {
-            std::cout<<"Queue is empty."<<std::endl;
-            return;
         }
         else{
-            list<T>* iterator=head;
-            while(iterator!=NULL) {
-                std::cout << "|" << iterator->element << std::endl;
-                iterator=iterator->next;
-            }
+            head=head->next;
+            delete head->prev;
+            head->prev=NULL;
+            return true;
+        }
+
+    }
+    void printQueue() {
+        if (head == NULL){
+            std::cout << "Queue is empty";
             return;
         }
+        list<T>* temp=head;
+        do{
+            std::cout<<temp->element<<" ";
+            temp=temp->next;
+        }while(temp!=NULL);
     }
 };
