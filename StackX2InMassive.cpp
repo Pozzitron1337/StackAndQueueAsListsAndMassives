@@ -12,7 +12,7 @@ public:
         size = s > 0 ? s: 10;
         stack = new T[size];
         topleft = -1;  //leftstack is empty
-        topright=size; //righth stack is empty
+        topright=size; //righth queue is empty
     }
     ~StackX2InMassive() // деструктор
     {
@@ -25,7 +25,7 @@ public:
              return true;
          }else{
              topleft--;
-             std::cout<<"Overflow left stack."<<"Cannot add element: "<<element<<std::endl;
+             std::cout<<"Overflow left queue."<<"Cannot add element: "<<element<<std::endl;
              return false;
          }
 
@@ -37,7 +37,7 @@ public:
             return true;
         }else{
             topright++;
-            std::cout<<"Overflow left stack."<<"Cannot add element: "<<element<<std::endl;
+            std::cout<<"Overflow left queue."<<"Cannot add element: "<<element<<std::endl;
             return false;
         }
 
@@ -62,7 +62,7 @@ public:
     }
     void printLeftStack(){
         if(topleft==-1) {
-            std::cout<<"Left stack is empty."<<std::endl;
+            std::cout<<"Left queue is empty."<<std::endl;
             return;
         }
         for (int i = topleft; i>= 0; i--)
@@ -70,7 +70,7 @@ public:
     }
     void printRightStack(){
         if(topright==size) {
-            std::cout<<"Right stack is empty."<<std::endl;
+            std::cout<<"Right queue is empty."<<std::endl;
             return;
         }
         for (int i = topright; i<size ; i++)

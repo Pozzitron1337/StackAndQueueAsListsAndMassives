@@ -14,9 +14,10 @@ public:
             stack.push_back(element);
         return true;
     }
-    bool pop(){
+    T pop(){
+        T popped= stack.back();
         stack.pop_back();
-        return true;
+        return popped;
     }
     void printStack(){
         std::list<int>::iterator ptr;

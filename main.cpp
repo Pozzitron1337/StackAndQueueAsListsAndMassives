@@ -6,12 +6,13 @@
 #include "QueueAsList.cpp"
 #include "StackX2InMassive.cpp"
 #include "expression.cpp"
-#include "StackSTL.cpp"
+
+
 using namespace std;
 
 int main() {
 
-    /*StackAsMassive<int> stack1(5);
+    StackAsMassive<int> stack1(5);
     stack1.printStack();
     cout<<endl;
     stack1.push(5);
@@ -20,9 +21,9 @@ int main() {
     cout<<endl;
     stack1.pop();
     stack1.printStack();
-    cout<<endl;*/
+    cout<<endl;
 
-   /* StackAsList<int> stack2;
+    StackAsList<int> stack2;
     stack2.printStack();
     stack2.push(8);
     stack2.push(4);
@@ -75,8 +76,7 @@ int main() {
         queue2.add(9);
         cout<<endl;
         queue2.printQueue();
-    cout<<endl;
-*/
+        cout<<endl;
        StackX2InMassive<int> s(4);
        s.pushleft(1);
        s.pushleft(2);
@@ -93,31 +93,60 @@ int main() {
        s.popleft();
        s.printLeftStack();
        cout<<endl;
-/*
-   InfixExpression infixExpression1("(A-B-C)/D-E*F");
+
+    QueueSTL<int> variebles;
+    variebles.push(10);
+    variebles.push(3);
+    variebles.push(3);
+    variebles.push(4);
+    variebles.push(98);
+    variebles.push(2);
+
+   InfixExpression infixExpression1("((A-B)-C)/D-E*F");
    cout << infixExpression1 << endl;
+
    PostfixExpression postfixExpression1(infixExpression1);
    cout << postfixExpression1 << endl;
+   cout<<postfixExpression1.count(variebles)<<endl;
 
    InfixExpression infixExpression2("(A+B)*C-(D+E)/F");
    cout << infixExpression2 << endl;
    PostfixExpression postfixExpression2(infixExpression2);
    cout << postfixExpression2 << endl;
+    cout<<postfixExpression2.count(variebles)<<endl;
 
    InfixExpression infixExpression3("(A/(B-C)+D*(E-F)");
    cout << infixExpression3 << endl;
    PostfixExpression postfixExpression3(infixExpression3);
    cout << postfixExpression3 << endl;
 
+
    InfixExpression infixExpression4("(A*B+C)/D-F/E");
    cout << infixExpression4 << endl;
+
    PostfixExpression postfixExpression4(infixExpression4);
    cout << postfixExpression4 << endl;
+
+    InfixExpression ie("35+91*(9213+8)");
+    cout<<ie<<endl;
+    PostfixExpression pe(ie);
+    cout<<pe<<endl;
+
+    cout<<endl;
    StackSTL<int> s1;
    s1.push(3);
    s1.push(7);
    s1.push(5);
    s1.push(9);
    s1.printStack();
-     */
+    cout<<endl;
+
+    QueueSTL<int> q1;
+    q1.push(4);
+    q1.push(8);
+    q1.push(1);
+    q1.printQueue();
+    int wqe=q1.pop();
+    cout<<endl;
+    q1.printQueue();
 }

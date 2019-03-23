@@ -6,21 +6,25 @@ using namespace std;
 template<typename T>
 class QueueSTL{
 private:
-    std::list<T> stack;
+    std::list<T> queue;
 public:
     QueueSTL(){
     }
     bool push(T element){
-        stack.push_back(element);
+        queue.push_back(element);
         return true;
     }
-    bool pop(){
-        stack.pop_front();
-        return true;
+    T pop(){
+        T popped = *(queue.begin());
+        queue.pop_front();
+        return popped;
     }
     void printQueue(){
         std::list<int>::iterator ptr;
-        for(ptr = stack.begin(); ptr != stack.end(); ++ptr)
+        for(ptr = queue.begin(); ptr != queue.end(); ++ptr)
             cout<<"|"<<*ptr<<endl;
+    }
+    int getSize(){
+        return queue.size();
     }
 };

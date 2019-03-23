@@ -40,16 +40,34 @@ public:
     }
     T getTopElement(){
         if(top==NULL)
-            return (T)'\0';
+            return (T)NULL;
         else
             return top->element;
     }
 
-    bool pop(){
+    T pop(){
+        if(top==NULL){
+            return (T)NULL;
+        }
+        if(top==stack){
+            top=NULL;
+            return stack->element;
+        }
+        else{
+            list<T>* temp=top;
+            T result=temp->element;
+            top=top->prev;
+            top->next=NULL;
+            delete temp;
+            return result;
+        }
+    }
+    /*
+     bool pop(){
         if(top==NULL){
             return false;
         }
-        if(top==stack){
+        if(top==queue){
             top=NULL;
             return true;
         }
@@ -60,7 +78,7 @@ public:
             delete temp;
             return true;
         }
-    }
+    } */
     bool isEmpty(){
         return (top==NULL)?true:false;
     };

@@ -3,20 +3,20 @@ template<typename T>
 class StackAsMassive {
 private:
     T *stack;           // massive
-    unsigned int size;  // stack size
-    int top;            // stack top
+    unsigned int size;  // queue size
+    int top;            // queue top
 public:
     StackAsMassive(int s=10)// by default
     {
         size = s > 0 ? s: 10;
         stack = new T[size];
-        top = -1;// stack is empty
+        top = -1;// queue is empty
     }
     ~StackAsMassive()
     {
         delete[] stack;
     }
-    bool push(const T element) //adding element to stack
+    bool push(const T element) //adding element to queue
     {
         if (top == size - 1) {
             std::cout<<"Stack is overflow."<<std::endl;
@@ -27,10 +27,10 @@ public:
         return true;//success
         }
     }
-    bool pop() //delete element from stack
+    bool pop() //delete element from queue
     {
         if (top == - 1)
-            return false; //stack is empty
+            return false; //queue is empty
         top--;
         return true;    //success
     }
